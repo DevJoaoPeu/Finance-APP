@@ -17,6 +17,8 @@ export class CreateUserUseCase {
 
         const postgresCreateUserRepository = new PostgresCreateUserRepository()
 
-        return await postgresCreateUserRepository.execute(user)
+        const createdUser = await postgresCreateUserRepository.execute(user)
+
+        return createdUser
     }
 }
