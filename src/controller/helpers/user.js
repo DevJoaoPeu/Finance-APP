@@ -19,3 +19,5 @@ export const invalidResponse = () =>
 export const checkIfPasswordIsValid = (password) => password.legth >= 6
 
 export const checkIfEmailIsValid = (email) => validator.email(email)
+
+export const checkIfIdIsValid = (id) => validator.isUUID(id)
