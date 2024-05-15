@@ -1,4 +1,4 @@
-import { UpdateUserUseCase } from '../use-cases/update-user.js'
+import { UpdateUserUseCase } from '../use-cases/index.js'
 import {
     checkIfEmailIsValid,
     checkIfIdIsValid,
@@ -50,7 +50,7 @@ export class UpdateUserController {
             }
 
             if (params.email) {
-                const emailIsValid = checkIfEmailIsValid(updateUser.email)
+                const emailIsValid = checkIfEmailIsValid(params.email)
 
                 if (!emailIsValid) {
                     return emailIsAlreadyUserResponse()
@@ -63,7 +63,7 @@ export class UpdateUserController {
 
             return ok(updateUser)
         } catch (error) {
-            console.log(error)
+            console.log(error.message)
             return serverError()
         }
     }
