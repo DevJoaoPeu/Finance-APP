@@ -60,6 +60,7 @@ export class UpdateUserController {
             const updateUserUseCase = new UpdateUserUseCase()
 
             const updateUser = await updateUserUseCase.execute(userId, params)
+            console.log(updateUser)
 
             return ok(updateUser)
         } catch (error) {
