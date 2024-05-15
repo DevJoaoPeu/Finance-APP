@@ -16,8 +16,8 @@ export const invalidResponse = () =>
         message: 'Invalid email. Please provide a valid one',
     })
 
-export const checkIfPasswordIsValid = (password) => password.legth >= 6
+export const checkIfPasswordIsValid = (password) => password.length >= 6
 
-export const checkIfEmailIsValid = (email) => validator.email(email)
+export const checkIfEmailIsValid = (email) => validator.isEmail(email)
 
 export const checkIfIdIsValid = (id) => validator.isUUID(id)

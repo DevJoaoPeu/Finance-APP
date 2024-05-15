@@ -1,6 +1,11 @@
-import { notFound, ok, serverError } from './helpers/http.js'
 import { GetUserByIdUseCase } from '../use-cases/get-user-id.js'
-import { checkIfIdIsValid, invalidResponse } from './helpers/user.js'
+import {
+    checkIfIdIsValid,
+    invalidResponse,
+    notFound,
+    ok,
+    serverError,
+} from './helpers/index.js'
 
 export class GetUserByIdController {
     async execute(httpRequest) {
