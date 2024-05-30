@@ -1,26 +1,26 @@
 import {
     checkIfIdIsValid,
-    invalidResponse,
+    invalidIdResponse,
     ok,
     serverError,
     userNotFoundResponse,
 } from '../helpers/index.js'
 
 export class GetUserByIdController {
-    constructor(getUserByIdUseCase){
+    constructor(getUserByIdUseCase) {
         this.getUserByIdUseCase = getUserByIdUseCase
     }
-    
+
     async execute(httpRequest) {
         try {
             const isIdValid = checkIfIdIsValid(httpRequest.params.userId)
 
             if (!isIdValid) {
-                return invalidResponse()
+                return invalidIdResponse()
             }
 
             const user = await this.getUserByIdUseCase.execute(
-                httpRequest.params.userId,
+                httpRequest.params.userId
             )
 
             if (!user) {

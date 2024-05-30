@@ -4,14 +4,14 @@ import {
     checkIfPasswordIsValid,
     emailIsAlreadyUserResponse,
     invalidPasswordResponse,
-    invalidResponse,
+    invalidIdResponse,
     badRequest,
     ok,
     serverError,
 } from '../helpers/index.js'
 
 export class UpdateUserController {
-    constructor(updateUserUseCase){
+    constructor(updateUserUseCase) {
         this.updateUserUseCase = updateUserUseCase
     }
 
@@ -22,7 +22,7 @@ export class UpdateUserController {
             const isIdValid = checkIfIdIsValid(httpRequest.params.userId)
 
             if (!isIdValid) {
-                return invalidResponse()
+                return invalidIdResponse()
             }
 
             const userId = httpRequest.params.userId
@@ -35,7 +35,7 @@ export class UpdateUserController {
             ]
 
             const someFieldIsNotAllowed = Object.keys(params).some(
-                (field) => !allowedFields.includes(field),
+                (field) => !allowedFields.includes(field)
             )
 
             if (someFieldIsNotAllowed) {
@@ -59,8 +59,11 @@ export class UpdateUserController {
                     return emailIsAlreadyUserResponse()
                 }
             }
-            
-            const updateUser = await this.updateUserUseCase.execute(userId, params)
+
+            const updateUser = await this.updateUserUseCase.execute(
+                userId,
+                params
+            )
 
             return ok(updateUser)
         } catch (error) {
