@@ -4,7 +4,7 @@ export class PostgresGetUserByEmailRepository {
     async execute(email) {
         const user = await PostgresHelper.query(
             'select * from users where email = $1',
-            [email],
+            [email]
         )
 
         return user[0]

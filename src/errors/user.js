@@ -1,6 +1,6 @@
-export class EmailALreadyInUseError extends Error {
+export class EmailAlreadyInUseError extends Error {
     constructor(email) {
         super(`The provided e-mail ${email} is already in use`)
-        this.name = 'EmailALreadyInUseError'
+        this.name = 'EmailAlreadyInUseError'
     }
 }

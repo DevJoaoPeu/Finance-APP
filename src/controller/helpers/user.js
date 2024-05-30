@@ -13,7 +13,7 @@ export const emailIsAlreadyUserResponse = () =>
 
 export const invalidResponse = () =>
     badRequest({
-        message: 'Invalid email. Please provide a valid one',
+        message: 'Id invalid. Please provide a valid one',
     })
 
 export const userNotFoundResponse = () =>
