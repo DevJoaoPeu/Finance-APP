@@ -1,27 +1,12 @@
 import 'dotenv/config.js'
 import express from 'express'
 import {
-    CreateUserController,
-    UpdateUserController,
-    DeleteUserController,
-} from './src/controller/index.js'
-import {
-    PostgresCreateUserRepository,
-    PostgresDeleteUserRepository,
-    PostgresGetUserByEmailRepository,
-    PostgresUpdateUserRepository,
-} from './src/repositories/postgres/index.js'
-import {
-    CreateUserUseCase,
-    DeleteUserUseCase,
-    UpdateUserUseCase,
-} from './src/use-cases/index.js'
-import {
     makeCreateUserController,
     makeDeleteUserController,
     makeUpdateUserController,
     makeUserByIdController,
 } from './src/factories/controllers/user.js'
+import { makeCreateTransactionController } from './src/factories/controllers/transactions.js'
 
 const app = express()
 
@@ -53,6 +38,16 @@ app.get('/api/users/:userId', async (request, response) => {
 app.delete('/api/users/:userId', async (request, response) => {
     const deleteUsercontroller = makeDeleteUserController()
     const { statusCode, body } = await deleteUsercontroller.execute(request)
+
+    response.status(statusCode).send(body)
+})
+
+app.post('/api/transactions', async (request, response) => {
+    const createTransactionController = makeCreateTransactionController()
+
+    const { statusCode, body } = await createTransactionController.execute(
+        request
+    )
 
     response.status(statusCode).send(body)
 })
