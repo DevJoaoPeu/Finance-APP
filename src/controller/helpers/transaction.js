@@ -1,5 +1,5 @@
 import validator from 'validator'
-import { badRequest } from './http'
+import { badRequest } from './http.js'
 
 export const checkIfAmountIsValid = (amount) =>
     validator.isCurrency(amount.toString(), {
@@ -11,10 +11,12 @@ export const checkIfAmountIsValid = (amount) =>
 export const checkIfTypeIsValid = (type) =>
     ['EARNING', 'EXPENSE', 'INVESTMENT'].includes(type)
 
-export const invalidAmountResponse = badRequest({
-    message: 'The amount must be a valid currency',
-})
+export const invalidAmountResponse = () =>
+    badRequest({
+        message: 'The amount must be a valid currency',
+    })
 
-export const invalidTypeResponse = badRequest({
-    message: 'The type mus be EARNING, EXPENSE or INVESTMENT',
-})
+export const invalidTypeResponse = () =>
+    badRequest({
+        message: 'The type mus be EARNING, EXPENSE or INVESTMENT',
+    })

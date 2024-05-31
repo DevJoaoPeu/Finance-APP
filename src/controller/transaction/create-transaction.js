@@ -8,6 +8,7 @@ import {
 } from '../helpers/index.js'
 import {
     checkIfAmountIsValid,
+    checkIfTypeIsValid,
     invalidAmountResponse,
     invalidTypeResponse,
 } from '../helpers/transaction.js'
