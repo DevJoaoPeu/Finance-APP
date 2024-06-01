@@ -1,3 +1,5 @@
+import { PostgresHelper } from '../../../db/postgres/helper.js'
+
 export class PostgresUpdateTransactionRepository {
     async execute(transactionId, updateTransactionParams) {
         const updateFields = []
