@@ -7,7 +7,8 @@ import {
     checkIfTypeIsValid,
     invalidTypeResponse,
     invalidIdResponse,
-} from '../helpers/index'
+    ok,
+} from '../helpers/index.js'
 
 export class UpdateTransactionController {
     constructor(updateTransactionUseCase) {
@@ -51,7 +52,7 @@ export class UpdateTransactionController {
                 }
             }
 
-            const transaction = this.updateTransactionUseCase.execute(
+            const transaction = await this.updateTransactionUseCase.execute(
                 httpRequest.params.transactionId,
                 params
             )
