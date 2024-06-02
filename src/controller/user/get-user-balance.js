@@ -5,7 +5,7 @@ import {
     ok,
     serverError,
     userNotFoundResponse,
-} from '../helper.js'
+} from '../helpers/index.js'
 
 export class GetUserBalanceController {
     constructor(getUserBalanceUseCase) {
