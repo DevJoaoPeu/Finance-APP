@@ -2,7 +2,10 @@ import { EmailAlreadyInUseError } from '../../errors/user.js'
 import bcrypt from 'bcrypt'
 
 export class UpdateUserUseCase {
-    constructor(postgresUpdateUserRepository, postgresGetUserByEmailRepository) {
+    constructor(
+        postgresUpdateUserRepository,
+        postgresGetUserByEmailRepository
+    ) {
         this.postgresUpdateUserRepository = postgresUpdateUserRepository
         this.postgresGetUserByEmailRepository = postgresGetUserByEmailRepository
     }
@@ -14,7 +17,7 @@ export class UpdateUserUseCase {
                     updateParams.email
                 )
 
-            if (userWithProvidedEmail) {
+            if (userWithProvidedEmail && userWithProvidedEmail.id !== userId) {
                 throw new EmailAlreadyInUseError(updateParams.email)
             }
         }
