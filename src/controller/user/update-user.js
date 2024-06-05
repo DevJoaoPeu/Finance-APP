@@ -6,6 +6,7 @@ import {
     badRequest,
     ok,
     serverError,
+    userNotFoundResponse,
 } from '../helpers/index.js'
 import { EmailAlreadyInUseError } from '../../errors/user.js'
 
@@ -32,6 +33,10 @@ export class UpdateUserController {
                 userId,
                 params
             )
+
+            if (!updateUser) {
+                return userNotFoundResponse()
+            }
 
             return ok(updateUser)
         } catch (error) {

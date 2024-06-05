@@ -1,9 +1,9 @@
 import {
+    badRequest,
     checkIfIdIsValid,
     invalidIdResponse,
     ok,
     serverError,
-    transactionNotFoundResponse,
 } from '../helpers/index.js'
 
 export class DeleteTransactionController {
@@ -23,7 +23,9 @@ export class DeleteTransactionController {
             )
 
             if (!transaction) {
-                return transactionNotFoundResponse()
+                return badRequest({
+                    message: 'Transaction not found',
+                })
             }
 
             return ok(transaction)
