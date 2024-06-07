@@ -25,10 +25,7 @@ export class UpdateUserUseCase {
         const user = { ...updateParams }
 
         if (updateParams.password) {
-            const hashedPassword = await bcrypt.hash(
-                createUserParams.password,
-                10
-            )
+            const hashedPassword = await bcrypt.hash(updateParams.password, 10)
             user.password = hashedPassword
         }
 
