@@ -14,24 +14,25 @@ datasource db {
 }
 
 model User {
-  id         String           @id @default(uuid())
-  first_name String
-  last_name  String
-  email      String        @unique
-  password   String
+  id           String        @id @default(uuid())
+  first_name   String        @db.VarChar(50)
+  last_name    String        @db.VarChar(50)
+  email        String        @unique @db.VarChar(100)
+  password     String        @db.VarChar(100)
   transactions Transaction[]
-  
+
   @@map("user") // Define the one-to-many relationship
 }
 
 model Transaction {
-  id        String      @id @default(uuid())
-  userId    String  
-  date      DateTime
-  amount    Float
-  type      TransactionType
+  id      String          @id @default(uuid())
+  user_id String
+  name    String          @db.VarChar(50)
+  date    DateTime        @db.Date
+  amount  Decimal         @db.Decimal(10, 2)
+  type    TransactionType
 
-  user      User     @relation(fields: [userId], references: [id])
+  user User @relation(fields: [user_id], references: [id])
 
   @@map("transactions")
 }
